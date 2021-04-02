@@ -19,12 +19,39 @@ def limit_handle(cursor):
   except tweepy.RateLimitError:
     time.sleep(1000)
 
+# Liking Tweets
+search_string = "python"
+numberOfTweets = 2
+
+for tweet in tweepy.Cursor(api.search, search_string).items(numberOfTweets):
+  try:
+    tweet.favorite()
+    print("I liked that tweet!")
+  except tweepy.TweepError as e:
+    print(e.reason)
+  except StopIteration:
+    break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Genrous Bot (follows back all your followers)
-for follower in limit_handle(tweepy.Cursor(api.followers).items()):
+# for follower in limit_handle(tweepy.Cursor(api.followers).items()):
   # to follow someone
   # if follower.name == "follower name":
   #   follower.follow()
-  print(follower.name)
+  # print(follower.name)
 
 
